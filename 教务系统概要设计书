@@ -1,0 +1,216 @@
+OA教务系统概要设计书
+
+一、引言
+1、编写目的
+《OA教务系统概要设计书》是在需求分析书的基础上编写出来的，通过这个概要设计书，能够对以后阶段的工作起指导作用，主要面向系统分析员，程序员，测试员和最终用户。
+编写该文档的目的是明确OA系统的功能和各环节的处理流程；明确用户的需求并更好的表达出来使得开发人员和用户达成一致。
+2、背景
+目前高校得到快速发展，信息化建设尤显重要。眼下各高校都把OA教务系统作为数字化校园建设的重中之重，并取得了极大的成效。目前，很多学校越做越大，招收的学生也越来越多，所需处理的事务也越来越繁重。因为学生数量多，生源分布广，档案复杂，课程分配要灵活等特点，使得教务工作变得复杂繁琐，此OA软件就是为了减轻教务工作的负担、加快教务工作的处理而设计产生的。
+3、定义
+Eclipse:编程软件；
+SQL：数据库；
+4、参考资料
+宗俊峰 罗文胜 《软件需求》 清华大学出版社 2017；
+[美] Dean Leffingwell《软件需求管理——统一方法》 机械工业出版社 2015;
+刘永祥 王庆春 《成功的软件开发》 中国人民大学出版社 2016；
+二、总体设计
+1、需求规定
+参考《OA需求分析书》
+2、运行环境
+a.数据云系统（例如：阿里云）
+b.网站运维服务器
+c.微软操作系统：windows 64位/Linux系统
+3、功能结构图
+OA系统主要功能结构图如下：
+
+
+
+
+
+
+
+
+
+
+
+
+(1)、教师子系统概要设计
+a.功能概要：
+该系统的最终用户为学院的全体教师，可提供教师个人信息、教师安排、职工汇报、教师邮箱4类功能。
+b.开始条件：
+    教师已登陆本系统。
+处理流程图：
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(2)、校园公告子系统概要设计
+a:功能概要：
+该系统的最终用户为学院的全体师生，可提供师生校园论坛、学校要闻、媒体报道、通知公告4类功能。
+b:开始条件：
+    用户已登陆本系统。
+处理流程图：
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4、结构
+教师功能子系统
+No	模块名称	功能需求
+1	个人信息管理	查询个人信息；
+修改个人信息；
+2	排课管理	课程调整；
+调课申请；
+3	职工汇报	教学进度汇报；
+所授课程总结汇报；
+4	教师邮箱	学生交作业；
+接收学校通知；
+
+校园公告功能子系统
+No	模块名称	功能需求
+1	校园论坛	 专业技术论坛；
+师生交流论坛；
+学习经验交流论坛；
+2	学校要闻	学院举办的比赛；
+学院组织的活动；
+3	媒体报道	教育网站报道；
+媒体报道；
+4	通知公告	校园发布的通知；
+校园发布的公告；
+
+
+
+三、接口设计
+1、用户接口
+学生用户登入系统界面。
+
+
+
+四、运行设计
+1、运行模块组合
+教师用户进入此系统后，界面有个人信息管理、排课管理、职工汇报、教师邮箱等模块。
+管理员用户进入此系统，界面有成绩管理、选修课程、信息管理、科研管理等模块。
+2、运行控制
+a.在页面上，通过鼠标点击触发相应的操作。
+b.在页面上，也可以通过Tab键、回车键等功能键完成某些特定的功能。
+
+3、运行时间
+a.系统登入响应时间限制2.3秒
+b.页面的加载时间为1.5秒
+五、系统数据结构设计
+1、逻辑结构设计
+教师管理子系统数据库表结构如下：
+(1)Teacher_table
+NO	字段名称	类型	Size	NULL	主键	说明
+1	tea_id	CHAR	4		1	教师ID
+2	tea_name	CHAR	8			姓名
+3	tea_office_address	CHAR	50			办公室
+4	tea_phone	CHAR	50			电话
+5	tea_email	CHAR	50			邮箱
+6	tea_info	CHAR	200	可以		个人简介
+
+(2)curriculum_table
+NO.	字段名称	类型	Size	NULL	主键	说明
+1	curriculum_id	CHAR	10		1	课程ID
+2	curriculum_name	CHAR	20			课程名称
+3	curriculum_time	CHAR	100			课程时间
+4	curriculum_addr	CHAR	200			授课地点
+(3)mail_managment_table
+NO.	字段名称	类型	Size	NULL	主键	说明
+1	mail_managment_id	CHAR	10		1	邮件ID
+2	mail_name	CHAR	20			邮件名称
+3	mail_from	CHAR	100			发件人
+4	material_info	CHAR	1024			邮件信息
+
+校园公告子系统数据库表结构如下：
+(1)shcool_forum_table
+NO.	字段名称	类型	Size	NULL	主键	说明
+1	shcool_forum_id	CHAR	10		1	论坛ID
+2	shcool_forum_name	CHAR	20			论坛名称
+3	shcool_forum_leave_message	CHAR	100			论坛留言
+4	shcool_forum_photo	CHAR	1024			论坛图表
+
+（2）shcool_notic_table
+
+NO.	字段名称	类型	Size	NULL	主键	说明
+1	school_notice_id	CHAR	10		1	校园公告ID
+2	school_notice_name	CHAR	20			校园公告名称
+3	school_notice_time	CHAR	100			发布时间
+4	school_notice_info	CHAR	1024			校园公告信息
+(3)shcool_news_table
+NO.	字段名称	类型	Size	NULL	主键	说明
+1	shcool_news_id	CHAR	10		1	要闻id
+2	shcool_news_name	CHAR	20			要闻名称
+3	shcool_news_time	CHAR	100			发布时间
+4	shcool_news_info	CHAR	1024			要闻信息
+(4)shcool_report_table
+NO.	字段名称	类型	Size	NULL	主键	说明
+1	shcool_report_id	CHAR	10		1	报道ID
+2	shcool_report_name	CHAR	20			报道名称
+3	shcool_report_time	CHAR	100			报道时间
+4	shcool_report_info	CHAR	1024			报道信息
+
+
+2、物理结构设计
+OA系统在MYSQL上只建立一个物理数据库，命名为OASystem。
+3、数据结构与程序关系
+(1)教师管理子系统关联表：Teacher_table、curriculum_table、mail_managment_table。
+(2)校园公告子系统关联表：shcool_forum_table、shcool_notic_tabl、shcool_news_table、shcool_report_table。
+
